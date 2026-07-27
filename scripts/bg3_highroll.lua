@@ -66,14 +66,14 @@ local COMPANION_DB = {
   {name = "Astarion",     uuid = "c7c13742-bacd-460a-8f65-f864fe41f255"},
   {name = "Gale",         uuid = "ad9af97d-75da-406a-ae13-7071c563f604"},
   {name = "Karlach",      uuid = "2c76687d-93a2-477b-8b18-8a14b549304c"},
-  {name = "Laezel",       uuid = "58a69333-40bf-8571-d77a-93e42c29260e"},
+  {name = "Lae'zel",      uuid = "58a69333-40bf-8571-d77a-93e42c29260e"},
   {name = "Wyll",         uuid = "c774d764-4a17-48dc-b470-32ace9ce447d"},
-  {name = "ShadowHeart",  uuid = "3ed74f06-3c60-42dc-83f6-f034cb47c679"},
+  {name = "Shadowheart",  uuid = "3ed74f06-3c60-42dc-83f6-f034cb47c679"},
   {name = "Minsc",        uuid = "0de603c5-42e2-4811-9210-f178b28716a8"},
   {name = "Jaheira",      uuid = "91b6b200-7d00-4d62-8dc9-99e8339dfa1a"},
   {name = "Minthara",     uuid = "25721313-0c15-4571-acc5-b83e5e09b30c"},
   {name = "Halsin",       uuid = "7628bc0e-52b8-42a7-856a-13a6fd413323"},
-  {name = "DarkUrge",     uuid = "3130cff0-5765-4b71-b857-a2b00228087b"},
+  {name = "Dark Urge",    uuid = "3130cff0-5765-4b71-b857-a2b00228087b"},
 }
 
 -- ============================================================================
