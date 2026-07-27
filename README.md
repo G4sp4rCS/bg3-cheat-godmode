@@ -4,7 +4,7 @@ Make your Baldur's Gate 3 party invincible and able to one-shot enemies. Multipl
 
 ## Overview
 
-This repo provides four independent tools for BG3:
+This repo provides five independent tools for BG3:
 
 | Script                | File                                         | Requires CE? | Features                                   |
 |-----------------------|----------------------------------------------|:------------:|--------------------------------------------|
@@ -12,6 +12,7 @@ This repo provides four independent tools for BG3:
 | Python Overlord       | `python/bg3_overlord.py`                     | Optional     | AOB patch, CE pipe, script generator       |
 | God Mode Only         | `scripts/bg3_godmode_party.lua`              | Yes          | Invulnerability only                       |
 | Python God Mode       | `python/bg3_godmode.py`                      | No           | Damage patch via pymem                     |
+| Always High Roll      | `scripts/bg3_highroll.lua`                   | Yes          | Every d20 roll lands high (natural 20)     |
 
 ---
 
@@ -53,6 +54,40 @@ GodModeParty:Toggle()
 GodModeParty:Status()
 GodModeParty:Refresh()
 ```
+
+---
+
+## Always High Roll
+
+Force every party member to roll high (natural 20) on **every d20 roll**: attack
+rolls (auto-hit + auto-crit), skill checks (Persuasion, Deception, Sleight of
+Hand, ...), saving throws, raw ability checks, and death saving throws.
+
+**Quick Start:**
+1. Open Cheat Engine and attach to bg3_dx11.exe
+2. Load cheat table and activate "Register Commands"
+3. Open Lua Engine, load `bg3_highroll.lua`, and execute
+
+**Commands:**
+```lua
+HighRoll:Enable()         -- Apply high-roll boosts to the whole party
+HighRoll:Disable()        -- Remove all high-roll boosts
+HighRoll:Toggle()         -- Toggle on/off (also Ctrl+H)
+HighRoll:Status()         -- Check current state
+HighRoll:Refresh()        -- Re-apply boosts (cleanly, no stacking)
+HighRoll:SetMode(m, v)    -- Switch mode/value live, e.g. SetMode("safe", 30)
+```
+
+**Modes** (set at the top of the script via `CONFIG`, or live with `SetMode`):
+
+| Mode   | Boosts used                        | Notes                                            |
+|--------|------------------------------------|--------------------------------------------------|
+| `max`  | `MinimumRollResult(...)`           | Die always lands on the target value (default 20). True "always natural 20". |
+| `safe` | `RollBonus(...)` + `Advantage(...)` | Huge flat bonus + advantage. No crash risk; use if `max` ever misbehaves.     |
+| `both` | Both layers together               | Belt-and-suspenders.                             |
+
+Default is `max` with value `20`. Raise the value (e.g. `30` or `99`) to beat the
+hardest DCs even with negative modifiers.
 
 ---
 
@@ -137,7 +172,8 @@ Lua scripts use BG3's Osiris command system via Cheat Engine's "Register Command
 bg3-party-godmode/
 ├── scripts/
 │   ├── bg3_godmode_instakill.lua
-│   └── bg3_godmode_party.lua
+│   ├── bg3_godmode_party.lua
+│   └── bg3_highroll.lua
 ├── python/
 │   ├── bg3_overlord.py
 │   └── bg3_godmode.py
